@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: artnet4j:artnet4j:0001">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/artnet4j/artnet4j/0001/artnet4j-0001.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/artnet4j/artnet4j/0001/artnet4j-0001-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/artnet4j/artnet4j/0001/artnet4j-0001-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

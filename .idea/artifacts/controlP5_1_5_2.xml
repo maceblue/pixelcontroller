@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="controlP5-1.5.2">
+    <output-path>$PROJECT_DIR$/pixelcontroller-distribution/target/classes/lib</output-path>
+    <root id="archive" name="controlP5-1.5.2.jar">
+      <element id="library" level="project" name="Maven: controlP5:controlP5:1.5.2" />
+    </root>
+  </artifact>
+</component>

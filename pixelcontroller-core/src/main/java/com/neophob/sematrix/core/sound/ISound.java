@@ -92,4 +92,6 @@ public interface ISound {
 	 * @return the fft avg
 	 */
 	float getFftAvg(int i);
+
+	float getBand(int i);
 }

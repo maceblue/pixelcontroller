@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Class-Path: slf4j-jdk14-1.6.3.jar minim-spi-2.1.0-BETA.jar rv3sf_api-0
+ .2.jar artnet4j-0001.jar jna-3.2.7.jar minim-2.1.0-BETA.jar jsminim-2
+ .1.0-BETA.jar commons-lang3-3.1.jar netutil-1.0.0.jar tritonus_share-
+ 2.0.2.jar tritonus_aos-2.0.2.jar rxtx-2.2.jar jargs-1.0.jar slf4j-api
+ -1.6.3.jar commons-collections-3.2.2.jar
+Main-Class: com.neophob.sematrix.cli.PixelControllerCli
+

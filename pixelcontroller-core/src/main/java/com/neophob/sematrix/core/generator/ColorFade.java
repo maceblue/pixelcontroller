@@ -42,7 +42,7 @@ public class ColorFade extends Generator {
 
     @Override
     public void update() {
-        Arrays.fill(this.internalBuffer, frameCount%255);        
+        Arrays.fill(this.internalBuffer, frameCount%255);
         frameCount++;
     }
     

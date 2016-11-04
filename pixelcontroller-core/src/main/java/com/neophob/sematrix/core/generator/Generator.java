@@ -95,6 +95,8 @@ public abstract class Generator implements RandomizeState {
         
 		/* use the visual 0 as generator */
 		VISUAL_ZERO(17),
+
+		STARS(18),
 		
 		;
 		

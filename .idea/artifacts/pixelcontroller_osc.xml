@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="pixelcontroller-osc">
+    <output-path>$PROJECT_DIR$/pixelcontroller-distribution/target/classes/lib</output-path>
+    <root id="archive" name="pixelcontroller-osc.jar">
+      <element id="archive" name="pixelcontroller-osc.jar">
+        <element id="module-output" name="pixelcontroller-osc" />
+      </element>
+      <element id="library" level="project" name="Maven: de.sciss:netutil:1.0.0" />
+    </root>
+  </artifact>
+</component>

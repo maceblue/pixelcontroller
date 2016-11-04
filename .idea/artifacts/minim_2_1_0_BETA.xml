@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="minim-2.1.0-BETA">
+    <output-path>$PROJECT_DIR$/pixelcontroller-distribution/target/classes/lib</output-path>
+    <root id="archive" name="minim-2.1.0-BETA.jar">
+      <element id="library" level="project" name="Maven: compartmental.net:minim:2.1.0-BETA" />
+    </root>
+  </artifact>
+</component>

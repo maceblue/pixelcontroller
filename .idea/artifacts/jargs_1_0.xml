@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="jargs-1.0">
+    <output-path>$PROJECT_DIR$/pixelcontroller-distribution/target/classes/lib</output-path>
+    <root id="archive" name="jargs-1.0.jar">
+      <element id="library" level="project" name="Maven: net.sf:jargs:1.0" />
+    </root>
+  </artifact>
+</component>

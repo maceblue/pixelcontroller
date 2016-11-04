@@ -148,7 +148,8 @@ public class PixelControllerGenerator implements PixelControllerElement {
         allGenerators.add(colorScroll);
         
         allGenerators.add(new ColorFade(matrix));
-        
+        allGenerators.add(new Stars(matrix));
+
         this.oscListener1 = new OscListener(matrix, GeneratorName.OSC_GEN1);
         this.oscListener2 = new OscListener(matrix, GeneratorName.OSC_GEN2);
         allGenerators.add(oscListener1);

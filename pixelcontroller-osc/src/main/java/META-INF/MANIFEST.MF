@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Class-Path: netutil-1.0.0.jar
+Main-Class: com.neophob.sematrix.osc.IntegrationTest
+

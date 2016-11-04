@@ -92,6 +92,7 @@ public class SoundDummy implements ISound {
 	public float getFftAvg(int i) {
 		return 1.0f;
 	}
+	public float getBand(int i) {return 1;}
 
 	/* (non-Javadoc)
 	 * @see com.neophob.sematrix.core.input.SeSound#shutdown()

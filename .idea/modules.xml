@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/pixelcontroller.iml" filepath="$PROJECT_DIR$/pixelcontroller.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pixelcontroller-cli/pixelcontroller-cli.iml" filepath="$PROJECT_DIR$/pixelcontroller-cli/pixelcontroller-cli.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pixelcontroller-core/pixelcontroller-core.iml" filepath="$PROJECT_DIR$/pixelcontroller-core/pixelcontroller-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pixelcontroller-distribution/pixelcontroller-distribution.iml" filepath="$PROJECT_DIR$/pixelcontroller-distribution/pixelcontroller-distribution.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pixelcontroller-gui/pixelcontroller-gui.iml" filepath="$PROJECT_DIR$/pixelcontroller-gui/pixelcontroller-gui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pixelcontroller-osc/pixelcontroller-osc.iml" filepath="$PROJECT_DIR$/pixelcontroller-osc/pixelcontroller-osc.iml" />
+    </modules>
+  </component>
+</project>

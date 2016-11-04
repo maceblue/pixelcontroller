@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="artnet4j-0001">
+    <output-path>$PROJECT_DIR$/pixelcontroller-distribution/target/classes/lib</output-path>
+    <root id="archive" name="artnet4j-0001.jar">
+      <element id="library" level="project" name="Maven: artnet4j:artnet4j:0001" />
+    </root>
+  </artifact>
+</component>

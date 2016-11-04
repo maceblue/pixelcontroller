@@ -18,14 +18,21 @@
  */
 package com.neophob.sematrix.core.sound;
 
-import java.io.InputStream;
+import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.zip.GZIPInputStream;
 
 import ddf.minim.AudioInput;
+import ddf.minim.AudioPlayer;
 import ddf.minim.Minim;
 import ddf.minim.analysis.BeatDetect;
 import ddf.minim.analysis.FFT;
+
+import com.neophob.sematrix.core.glue.FileUtils;
 
 /**
  * The Class SoundMinim.
@@ -44,9 +51,13 @@ public final class SoundMinim implements ISound, Runnable {
 	
 	/** The in. */
 	private AudioInput in;
+
+	private AudioPlayer input;
 	
 	/** The beat. */
 	private BeatDetect beat;
+
+	private FileUtils fileUtils;
 	
 	/** The bl. */
 	@SuppressWarnings("unused")
@@ -64,6 +75,7 @@ public final class SoundMinim implements ISound, Runnable {
 
 	private float silenceThreshold;
 	private long dropedVolumeRequests;
+	private static final String SOUNDFILE = "Kalimba.mp3";
 	
 	/**
 	 * Instantiates a new sound minim.
@@ -72,6 +84,12 @@ public final class SoundMinim implements ISound, Runnable {
 		minim = new Minim(this);
 		//in = minim.getLineIn( Minim.STEREO, 512 );
 		in = minim.getLineIn( Minim.MONO, 1024 );
+
+//		input = minim.loadFile("http://mp3stream1.apasf.apa.at:8000");
+		fileUtils = new FileUtils();
+		String fileToLoad = fileUtils.getDataDir()+ File.separator+SOUNDFILE;
+		input = minim.loadFile(fileToLoad);
+//		input.play();
 
 		// a beat detection object that is FREQ_ENERGY mode that 
 		// expects buffers the length of song's buffer size
@@ -89,10 +107,12 @@ public final class SoundMinim implements ISound, Runnable {
 
 		bl = new BeatListener(beat, in);		 
 
-		fft = new FFT(in.bufferSize(), in.sampleRate());
+//		fft = new FFT(in.bufferSize(), in.sampleRate());
+		fft = new FFT(input.bufferSize(), input.sampleRate());
 		fft.window(FFT.HAMMING);
-		fft.logAverages(120,4); // 32 bands
-		
+//		fft.logAverages(120,4); // 32 bands
+		fft.logAverages(8,1); // ?? bands
+
 		this.silenceThreshold = silenceThreshold;
 		
 		this.runner = new Thread(this);
@@ -116,10 +136,121 @@ public final class SoundMinim implements ISound, Runnable {
 	 * @param fileName
 	 * @return
 	 */
-	public InputStream createInput(String fileName) {
-		LOG.log(Level.INFO, "Not implemented, not used, createInput: "+fileName);
-		return null;
-	}
+//	public InputStream createInput(String fileName) {
+//		LOG.log(Level.INFO, "Not implemented, not used, createInput: "+fileName);
+//		return null;
+//	}
+    public InputStream createInput(String filename) {
+        InputStream input = this.createInputRaw(filename);
+        if(input != null && filename.toLowerCase().endsWith(".gz")) {
+            try {
+                return new GZIPInputStream(input);
+            } catch (IOException var4) {
+                var4.printStackTrace();
+                return null;
+            }
+        } else {
+            return input;
+        }
+    }
+
+    public InputStream createInputRaw(String filename) {
+        FileInputStream stream = null;
+        if(filename == null) {
+            return null;
+        } else if(filename.length() == 0) {
+            return null;
+        } else {
+            InputStream stream1;
+            if(filename.indexOf(":") != -1) {
+                try {
+                    URL cl2 = new URL(filename);
+                    stream1 = cl2.openStream();
+                    return stream1;
+                } catch (MalformedURLException var17) {
+                    ;
+                } catch (FileNotFoundException var18) {
+                    ;
+                } catch (IOException var19) {
+                    var19.printStackTrace();
+                    return null;
+                }
+            }
+
+            String e;
+            try {
+                File cl = new File(filename);
+                if(!cl.exists()) {
+                    cl = new File(filename);
+                }
+
+                if(cl.isDirectory()) {
+                    return null;
+                }
+
+                if(cl.exists()) {
+                    try {
+                        e = cl.getCanonicalPath();
+                        String url = (new File(e)).getName();
+                        String conn = (new File(filename)).getName();
+                        if(!url.equals(conn)) {
+                            throw new RuntimeException("This file is named " + url + " not " + filename + ". Rename the file " + "or change your code.");
+                        }
+                    } catch (IOException var14) {
+                        ;
+                    }
+                }
+
+                stream = new FileInputStream(cl);
+                if(stream != null) {
+                    return stream;
+                }
+            } catch (IOException var15) {
+                ;
+            } catch (SecurityException var16) {
+                ;
+            }
+
+            ClassLoader cl1 = this.getClass().getClassLoader();
+            stream1 = cl1.getResourceAsStream("data/" + filename);
+            if(stream1 != null) {
+                e = stream1.getClass().getName();
+                if(!e.equals("sun.plugin.cache.EmptyInputStream")) {
+                    return stream1;
+                }
+            }
+
+            stream1 = cl1.getResourceAsStream(filename);
+            if(stream1 != null) {
+                e = stream1.getClass().getName();
+                if(!e.equals("sun.plugin.cache.EmptyInputStream")) {
+                    return stream1;
+                }
+            }
+
+
+
+            try {
+                try {
+
+                    try {
+                        stream = new FileInputStream(filename);
+                        if(stream != null) {
+                            return stream;
+                        }
+                    } catch (IOException var7) {
+                        ;
+                    }
+                } catch (SecurityException var10) {
+                    ;
+                }
+            } catch (Exception var11) {
+                var11.printStackTrace();
+            }
+
+            return null;
+        }
+    }
 
 	/**
 	 * Gets the current level of the buffer. It is calculated as 
@@ -195,6 +326,10 @@ public final class SoundMinim implements ISound, Runnable {
 
 		return fft.avgSize();
 	}
+
+	public float getBand(int i) {
+        return fft.getBand(i);
+    }
 	
 	/**
 	 * Gets the value of the ith average.

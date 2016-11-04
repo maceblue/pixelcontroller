@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="junit-4.11">
+    <output-path>$PROJECT_DIR$/pixelcontroller-distribution/target/classes/lib</output-path>
+    <root id="archive" name="junit-4.11.jar">
+      <element id="library" level="project" name="Maven: junit:junit:4.11" />
+    </root>
+  </artifact>
+</component>
