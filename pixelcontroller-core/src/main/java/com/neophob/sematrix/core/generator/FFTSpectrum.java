@@ -89,15 +89,11 @@ public class FFTSpectrum extends Generator {
 
 		}
 
-		for (int i=0; i<avg; i++) {
-			int col = 20;
-			int h = (int)(Math.log(fftSmooth[i]*3.0f)*30);
 
-			h=255+h;
-			if (h>255) {
-				h=255;
-			}
-			h = h*h/255;
+		int grid = 8;
+		for (int i=0; i<avg; i++) {
+			int col = 50;
+
 			fftSmooth[i] = 0.3f * fftSmooth[i] + 0.7f * sound.getFftAvg(i);
 //			LOG.log(Level.INFO, "fftSmooth: "+fftSmooth[i]);
 //			float x = map(i, 0, avg, 0, this.internalBufferXSize);
@@ -105,11 +101,11 @@ public class FFTSpectrum extends Generator {
 //			rect(x+spacing, height, width/grid-2*spacing, -y);
             int x = (int)this.internalBufferXSize/avg;
             float currentband = sound.getBand(i);
-			rect2(i*x ,0, i*x+x, (int)currentband, 50);
+			rect2(i*x ,0, i*x+x, (int)currentband*8, col);
 		}
 //        rect2(0,0,200,32,50);
-		// See https://lernprocessing.wordpress.com/2012/06/18/minim-audio-analyse/
-		// Breite der Rechtecke berechnen
+// See https://lernprocessing.wordpress.com/2012/06/18/minim-audio-analyse/
+// Breite der Rechtecke berechnen
 //		for (int i=0; i < fftR.avgSize(); i+=fftR.avgSize()/grid) {
 //			float x = map(i, 0, fftR.avgSize(), 0, width);
 //			float y = map(fftR.getAvg(i)*yScale, 0, 100, 0, height/5) ;

@@ -86,10 +86,11 @@ public final class SoundMinim implements ISound, Runnable {
 		in = minim.getLineIn( Minim.MONO, 1024 );
 
 //		input = minim.loadFile("http://mp3stream1.apasf.apa.at:8000");
-		fileUtils = new FileUtils();
-		String fileToLoad = fileUtils.getDataDir()+ File.separator+SOUNDFILE;
-		input = minim.loadFile(fileToLoad);
-		input.play();
+//		fileUtils = new FileUtils();
+//		String fileToLoad = fileUtils.getDataDir()+ File.separator+SOUNDFILE;
+//		input = minim.loadFile(fileToLoad);
+//		input = minim.loadFile("Kalimba.mp3");
+//		input.play();
 
 		// a beat detection object that is FREQ_ENERGY mode that 
 		// expects buffers the length of song's buffer size
@@ -107,8 +108,8 @@ public final class SoundMinim implements ISound, Runnable {
 
 		bl = new BeatListener(beat, in);		 
 
-//		fft = new FFT(in.bufferSize(), in.sampleRate());
-		fft = new FFT(input.bufferSize(), input.sampleRate());
+		fft = new FFT(in.bufferSize(), in.sampleRate());
+//		fft = new FFT(input.bufferSize(), input.sampleRate());
 		fft.window(FFT.HAMMING);
 		fft.logAverages(120,4); // 32 bands
 //		fft.logAverages(8,1); // ?? bands
@@ -328,6 +329,7 @@ public final class SoundMinim implements ISound, Runnable {
 	}
 
 	public float getBand(int i) {
+        //fft.forward(in.mix); //mace
         return fft.getBand(i);
     }
 	
